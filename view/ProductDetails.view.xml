@@ -1,0 +1,101 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:tnt="sap.tnt"
+	height="100%"
+	controllerName="hanna.karabankova.controller.ProductDetails">
+
+	<f:DynamicPage showFooter="true" class="sapUiNoContentPadding">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>ProductDetailsTitle} ({odata>Name})"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs>
+						<Link text="{i18n>ProductDetailsBreadcrumbStoreslist}" press="onNavToStoresList" />
+						<Link text="{i18n>ProductDetailsBreadcrumbStoreDetails}" press="onNavToStoreDetails" />
+						<Link text="{i18n>ProductDetailsBreadcrumb}" />
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<VBox class="sapUiSmallMargin">
+					<form:SimpleForm
+						id="SimpleForm"
+						minWidth="1024"
+						layout="ColumnLayout">
+						<form:content>
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormPrice}" />
+							<Text text="{odata>Price}" />
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormRating}" />
+							<Text text="{odata>Rating}" />
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormSpecs}" />
+							<Text text="{odata>Specs}" />
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormSupplierInfo}" />
+							<Text text="{odata>SupplierInfo}" />
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormProductionCompanyName}" />
+							<Text text="{odata>ProductionCompanyName}" />
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormMadeIn}" />
+							<Text text="{odata>MadeIn}" />
+							<Label design="Bold" text="{i18n>ProductDetailsSimpleFormStatus}" />
+							<tnt:InfoLabel id="idStatus" text="{odata>Status}" renderMode="Narrow" colorScheme="1" />
+						</form:content>
+					</form:SimpleForm>
+				</VBox>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content>
+			<layout:VerticalLayout 
+				width="100%" 
+				class="sapUiContentPadding">
+				<HBox 
+					alignContent="Center" 
+					alignItems="Center">
+					<Label 
+						text="{i18n>ProductDetailsHBoxLabelAuthor}" 
+						showColon="true" 
+						class="sapUiTinyMarginEnd">
+					</Label>
+					<Input
+						id="AuthorNameInput" placeholder="Enter name">
+					</Input>
+					<Label 
+						text="{i18n>ProductDetailsHBoxLabelRaiting}" 
+						showColon="true" 
+						class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+					</Label>
+					<RatingIndicator 
+						id="CommentRating" maxValue="5"/>
+				</HBox>
+				<FeedInput id="FeedInput" post="onCreateCommentPress"/>
+				<List
+					id="idCommentsList"
+					noDataText="text"
+					showSeparators="Inner"
+					items="{appView>/ProductComments}">
+					<FeedListItem
+						sender="{appView>Author}"
+						icon="sap-icon://person-placeholder"
+						info="{i18n>ProductDetailsListInfo} {appView>Rating}"
+						text="{appView>Message}"
+						timestamp="{i18n>ProductDetailsListTimestamp} {
+								path: 'appView>Posted',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: { style: 'medium'}
+								}"
+					/>
+				</List>
+			</layout:VerticalLayout>
+		</f:content>
+	</f:DynamicPage>
+
+</mvc:View>

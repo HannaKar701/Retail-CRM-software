@@ -1,0 +1,86 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Dialog
+		id="addStoreDialog"
+		title="{i18n>AddStoreDialogTitle}">
+		<f:SimpleForm
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1"
+			validateFieldGroup="onValidateStoreCreateFieldGroup">
+			<f:content>
+				<Label text="{i18n>AddStoreDialogLableName}"/>
+				<Input 
+					fieldGroupIds="createStore"
+					id="Name" 
+					type="Text" 
+					required="true" 
+					placeholder="{i18n>AddStoreDialogLableNamePlaceholder}" 
+					value="{
+						path: 'Name',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							search: '^[A-z]+$'
+						}
+					}"/>
+
+				<Label text="{i18n>AddStoreDialogLableEmail}"/>
+				<Input 
+					fieldGroupIds="createStore"
+					id="Email" 
+					type="Email" 
+					required="true" 
+					placeholder="{i18n>AddStoreDialogLableEmailPlaceholder}" 
+					value="{Email}"/>
+
+				<Label text="{i18n>AddStoreDialogLableTel}"/>
+				<Input 
+					fieldGroupIds="createStore"
+					id="PhoneNumber" 
+					type="Tel" 
+					required="true" 
+					placeholder="{i18n>AddStoreDialogLableTelPlaceholder}" 
+					value="{PhoneNumber}"/>
+
+				<Label text="{i18n>AddStoreDialogLableAddress}"/>
+				<Input 
+					fieldGroupIds="createStore"
+					id="Address" 
+					type="Text" 
+					required="true" 
+					placeholder="{i18n>AddStoreDialogLableAddressPlaceholder}" 
+					value="{Address}"/>
+
+                <Label text="{i18n>AddStoreDialogLableDate}"/>
+				<DatePicker 
+					fieldGroupIds="createStore"
+					id="Established" 
+					required="true" 
+					placeholder="{i18n>AddStoreDialogLableDatePlaceholder}" 
+					value="{Established}"/>
+
+                <Label text="{i18n>AddStoreDialogLableFloorArea}"/>
+				<Input 
+					fieldGroupIds="createStore"
+					id="FloorArea" 
+					type="Number" 
+					required="true" 
+					placeholder="{i18n>AddStoreDialogLableFloorAreaPlaceholder}" 
+					value="{FloorArea}"/>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+            <Button text="{i18n>AddStoreDialogButtonCreate}" type="Emphasized" press="onDialogCreatePress" />
+			<Button text="{i18n>AddStoreDialogButtonClose}" press="onDialogClosePress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,129 @@
+{
+	"sap.app": {
+		"id": "hanna.karabankova",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "http://localhost:3000/odata",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": "hanna.karabankova.view.App",
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "hanna.karabankova.view",
+				"controlId": "RootApp",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"notFound"
+					]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "StoresOverview",
+					"target": [
+						"StoresOverview"
+					]
+				},
+                {
+					"pattern": "storeDetails/{shopId}",
+					"name": "StoreDetails",
+					"target": [
+						"StoreDetails"
+					]
+				},
+                {
+					"pattern": "storeDetails/{shopId}/productDetails/{productId}",
+					"name": "ProductDetails",
+					"target": [
+						"ProductDetails"
+					]
+				}
+			],
+
+			"targets": {
+				"StoresOverview": {
+					"viewName": "StoresOverview",
+					"viewId": "storesOverview",
+					"viewLevel": 1
+				},
+
+                "StoreDetails": {
+					"viewName": "StoreDetails",
+					"viewId": "storeDetails",
+					"viewLevel": 2
+				},
+
+                "ProductDetails": {
+					"viewName": "ProductDetails",
+					"viewId": "productDetails",
+					"viewLevel": 3
+				},
+
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
+				}
+			}
+		},
+		"dependencies": {
+			"minUI5Version": "1.54.0",
+			"libs": {
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.tnt": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "hanna.karabankova.i18n.i18n",
+					"bundleLocale": "en"
+				}
+			},
+			"appView":{
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"odata": {
+				"dataSource": "mainService",
+				"settings": {
+					"defaultUpdateMethod": "PUT",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"useBatch": false,
+					"disableHeadRequestForToken": true
+				}
+			}
+		}
+	}
+}

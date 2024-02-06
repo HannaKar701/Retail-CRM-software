@@ -1,0 +1,53 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="hanna.karabankova.controller.StoresOverview"
+	xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout"
+	height="100%">
+
+	<f:DynamicPage showFooter="true" class="sapUiNoContentPadding">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>StoresListTitle}"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs>
+						<Link text="{i18n>StoresListBreadcrumbs}"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<SearchField id="storesSearch" width="100%" search="onStoresSearch" showRefreshButton="true"/>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content>
+			<List
+				id="StoresList"
+				items="{odata>/Stores}">
+				<ObjectListItem
+					title="{odata>Name}"
+					type="Active"
+					press="onListItemPress"
+					number="{odata>FloorArea}"
+					numberUnit="{i18n>StoresListNumberUnit}">
+					<ObjectAttribute text="{odata>Address}"/>
+				</ObjectListItem>
+			</List>
+		</f:content>
+
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="{i18n>StoresListButtonCreate}" press="onCreateStorePress"></Button>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+
+</mvc:View>
+

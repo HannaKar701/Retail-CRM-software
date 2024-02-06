@@ -1,0 +1,138 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Dialog
+		id="editProductDialog"
+		title="{i18n>EditProductDialogTitle}">
+		<f:SimpleForm
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1"
+			validateFieldGroup="onValidateProductCreateFieldGroup">
+			<f:content>
+				<Label text="{i18n>AddProductDialogLableName}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Text" 
+					required="true"
+					placeholder="{i18n>AddProductDialogLableNamePlaceholder}" 
+					value="{
+						path: 'Name',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							search: '^[A-z]+$'
+						}
+					}"/>
+
+				<Label text="{i18n>AddProductDialogLablePrice}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Number" 
+					required="true"
+					placeholder="{i18n>AddProductDialogLablePricePlaceholder}" 
+					value="{
+						path: 'Price',
+						type: 'sap.ui.model.type.Integer',
+						constraints: {
+							minimum: 1,
+							maximum: 1000000
+						}
+					}"/>
+
+				<Label text="{i18n>AddProductDialogLableSpecs}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Text" 
+					placeholder="{i18n>AddProductDialogLableSpecsPlaceholder}" 
+					value="{
+						path: 'Specs',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							search: '^[A-z]+$'
+						}
+					}"/>
+
+				<Label text="{i18n>AddProductDialogLableRating}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Number" 
+					required="true"
+					placeholder="{i18n>AddProductDialogLableRatingPlaceholder}" 
+					value="{
+						path: 'Rating',
+						type: 'sap.ui.model.type.Integer',
+						constraints: {
+							minimum: 1,
+							maximum: 5
+						}
+					}"/>
+
+                <Label text="{i18n>AddProductDialogLableMadeIn}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Text" 
+					placeholder="{i18n>AddProductDialogLableMadeInPlaceholder}" 
+					required="true" 
+					value="{
+						path: 'MadeIn',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							search: '^[A-z]+$'
+						}
+					}"/>
+
+                <Label text="{i18n>AddProductDialogLableSupplierInfo}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Text" 
+					placeholder="{i18n>AddProductDialogLableSupplierInfoPlaceholder}" 
+					required="true" 
+					value="{
+						path: 'SupplierInfo',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							search: '^[A-z]+$'
+						}
+					}"/>
+
+                <Label text="{i18n>AddProductDialogLableProductionCompanyName}"/>
+				<Input 
+					fieldGroupIds="editProduct"
+					type="Text" 
+					required="true" 
+					placeholder="{i18n>AddProductDialogLableProductionCompanyNamePlaceholder}" 
+					value="{
+						path: 'ProductionCompanyName',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							search: '^[A-z]+$'
+						}
+					}"/>
+
+                <Label text="{i18n>AddProductDialogLableStatus}"/>
+				<Select selectedKey="{Status}" required="true" fieldGroupIds="editProduct">
+					<core:Item enabled="false"/> 
+                    <core:Item key="OK" text="{i18n>AddProductDialogLableStatusOk}" /> 
+                    <core:Item key="STORAGE" text="{i18n>AddProductDialogLableStatusStorage}" />
+                    <core:Item key="OUT_OF_STOCK" text="{i18n>AddProductDialogLableStatusOutOfStock}" />
+			    </Select>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+            <Button text="{i18n>EditProductDialogButtonEdit}" type="Emphasized" press="onDialogEditPress" />
+			<Button text="{i18n>AddProductDialogButtonClose}" press="onEditProductDialogClosePress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
