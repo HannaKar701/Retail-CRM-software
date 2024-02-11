@@ -1,20 +1,20 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+    "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
     'sap/ui/model/FilterOperator',
     "sap/ui/model/Sorter",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
-	"sap/m/MessageBox"
+    "sap/m/MessageBox"
 ], function (Controller, Filter, FilterOperator, Sorter, JSONModel, MessageToast, MessageBox) {
 	"use strict";
 
     const SORT_NONE	= "";
-	const SORT_ASC	= "ASC";
-	const SORT_DESC	= "DESC";
+    const SORT_ASC	= "ASC";
+    const SORT_DESC	= "DESC";
     const aStatuses = ["ALL", "OK", "STORAGE", "OUT_OF_STOCK"];
 
-	return Controller.extend("hanna.karabankova.controller.StoreDetails", {
+    return Controller.extend("hanna.karabankova.controller.StoreDetails", {
         
         /**
          * Controller's "init" lifecycle method.
@@ -47,10 +47,10 @@ sap.ui.define([
         },
 
         /**
-		 * Event handler to the patternMatched event of this sap.ui.core.routing.Route.
-		 *
-		 * @param {sap.ui.base.Event} oEvent event object
-		 */
+	 * Event handler to the patternMatched event of this sap.ui.core.routing.Route.
+	 *
+	 * @param {sap.ui.base.Event} oEvent event object
+	 */
         _onPatternMatched: function(oEvent) {
             let mRouteArguments = oEvent.getParameter("arguments");
             let sStoreID = mRouteArguments.shopId;
